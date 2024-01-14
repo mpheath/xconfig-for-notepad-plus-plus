@@ -4,7 +4,7 @@
 ## About
 
 Sets optional properties for Lexilla lexers and
-custom Change History properties for Scintilla.
+properties for Scintilla.
 
 Compatible with PythonScript 2 and 3.
 
