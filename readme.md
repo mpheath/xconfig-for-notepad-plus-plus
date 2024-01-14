@@ -19,7 +19,7 @@ An extra option is *XConfigUI.py* which requires the additional *tkinter* packag
 This script only handles the runtime settings in memory.
 These settings are applied during the running instance of Notepad++.
 
-More details about the optional UI can be viewed on the [ui page](ui\readme.md) .
+More details about the optional UI can be viewed on the [ui page](ui/readme.md) .
 
 Another extra option is *ToggleChangeHistory.py* which might help with
 a requested feature to toggle Change History markers. The function is
