@@ -389,29 +389,5 @@ class XConfigUI():
             self.view.insert('end', '{} = {}\n'.format(key, value))
 
 
-# reminder: Only for testing outside of N++.
-try:
-    xconfig
-except:
-    import unittest.mock
-
-    xconfig = unittest.mock.Mock()
-    xconfig.settings = {}
-    xconfig.reload.return_value = {}
-
-    editor = unittest.mock.Mock()
-    editor.getChangeHistory.return_value = 3
-    editor.getProperty.return_value = ''
-
-    notepad = unittest.mock.Mock()
-
-    if os.path.exists('xconfig.properties'):
-        notepad.getPluginConfigDir.return_value = r'.'
-    else:
-        notepad.getPluginConfigDir.return_value = r'..\..'
-
-    del unittest
-
-
 if __name__ == '__main__':
     XConfigUI()
