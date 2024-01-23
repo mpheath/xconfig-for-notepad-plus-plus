@@ -246,6 +246,27 @@ def reload(args=None):
                 if mark:
                     editor.markerDefine(mark, value)
 
+        elif key == 'fold.flags':
+            value = integer(value)
+
+            if value is not None:
+                line_margin = 0
+                width = editor.getMarginWidthN(line_margin)
+
+                if 64 & value or 128 & value:
+                    if width != 0 and width != 128:
+                        editor.setMarginWidthN(line_margin, 0)
+                        width = editor.getMarginWidthN(line_margin)
+
+                    if width == 0:
+                        editor.setMarginWidthN(line_margin, 128)
+                        width = editor.getMarginWidthN(line_margin)
+
+                    if width == 128:
+                        editor.setFoldFlags(value)
+                else:
+                    editor.setFoldFlags(value)
+
         elif key == 'horizontal.scroll.width':
             value = integer(value)
 

@@ -317,6 +317,8 @@ class XConfigUI():
         elif key == 'change.history.marker.saved':
             marker = xconfig.SC_MARKNUM_HISTORY_SAVED
             value = str(editor.markerSymbolDefined(marker))
+        elif key == 'fold.flags':
+            value = ''
         elif key == 'horizontal.scroll.width':
             value = str(editor.getScrollWidth())
         elif key == 'horizontal.scroll.width.tracking':
