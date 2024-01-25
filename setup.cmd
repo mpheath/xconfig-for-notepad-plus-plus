@@ -33,7 +33,7 @@ echo   Config: "%ConfigDir%"
 echo   PythonScript: "%PythonScriptDir%"
 
 :: Get confirmation to continue.
-set /p "reply=Continue? : [n|y] " || exit /b 1
+set /p "reply=Continue? [n|y]: " || exit /b 1
 if not "%reply%" == "y" exit /b 0
 
 :: Check PythonScript is installed.
