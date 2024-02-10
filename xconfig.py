@@ -131,13 +131,29 @@ def reload(args=None):
         return value
 
 
-    def integer(value):
-        '''String to integer.'''
+    def integer(value, logic=None):
+        '''String to integer.
+
+        logic: Pass bool which returns False if 0 or True if 1.
+               Pass an integer to validate within range().
+        '''
 
         try:
             value = int(value)
         except ValueError:
             value = None
+        else:
+            if logic is not None:
+                if logic is bool:
+                    if value in range(2):
+                        value = value != 0
+                    else:
+                        value = None
+                elif isinstance(logic, int):
+                    if value not in range(logic):
+                        value = None
+
+        if value is None:
             invalid_keys.append(key)
 
         return value
@@ -148,14 +164,10 @@ def reload(args=None):
     for key, value in settings.items():
 
         if key == 'backspace.unindents':
-            value = integer(value)
+            value = integer(value, bool)
 
             if value is not None:
-                if value in range(2):
-                    value = True if value else False
-                    editor.setBackSpaceUnIndents(value)
-                else:
-                    invalid_keys.append(key)
+                editor.setBackSpaceUnIndents(value)
 
         elif key == 'bookmark.colour':
             value = hexadecimal(value)
@@ -218,15 +230,11 @@ def reload(args=None):
                         editor.indicSetFore(i, value)
 
         elif key == 'change.history.indicator':
-            value = integer(value)
+            value = integer(value, 23)
 
             if value is not None:
-                if value in range(23):
-                    for i in (36, 38, 40, 42):
-                        editor.indicSetStyle(i, value)
-                else:
-                    invalid_keys.append(key)
-
+                for i in (36, 38, 40, 42):
+                    editor.indicSetStyle(i, value)
 
         elif key.startswith('change.history.marker.'):
             value = integer(value)
@@ -274,30 +282,22 @@ def reload(args=None):
                 editor.setScrollWidth(value)
 
         elif key == 'horizontal.scroll.width.tracking':
-            value = integer(value)
+            value = integer(value, bool)
 
             if value is not None:
-                value = True if value else False
                 editor.setScrollWidthTracking(value)
 
         elif key == 'tab.indents':
-            value = integer(value)
+            value = integer(value, bool)
 
             if value is not None:
-                if value in range(2):
-                    value = True if value else False
-                    editor.setTabIndents(value)
-                else:
-                    invalid_keys.append(key)
+                editor.setTabIndents(value)
 
         elif key == 'technology':
-            value = integer(value)
+            value = integer(value, 4)
 
             if value is not None:
-                if value in range(4):
-                    editor.setTechnology(value)
-                else:
-                    invalid_keys.append(key)
+                editor.setTechnology(value)
 
         elif key == 'whitespace.size':
             value = integer(value)
@@ -306,40 +306,28 @@ def reload(args=None):
                 editor.setWhitespaceSize(value)
 
         elif key == 'wrap.indent.mode':
-            value = integer(value)
+            value = integer(value, 4)
 
             if value is not None:
-                if value in range(4):
-                    editor.setWrapIndentMode(value)
-                else:
-                    invalid_keys.append(key)
+                editor.setWrapIndentMode(value)
 
         elif key == 'wrap.style':
-            value = integer(value)
+            value = integer(value, 4)
 
             if value is not None:
-                if value in range(4):
-                    editor.setWrapMode(value)
-                else:
-                    invalid_keys.append(key)
+                editor.setWrapMode(value)
 
         elif key == 'wrap.visual.flags':
-            value = integer(value)
+            value = integer(value, 4)
 
             if value is not None:
-                if value in range(4):
-                    editor.setWrapVisualFlags(value)
-                else:
-                    invalid_keys.append(key)
+                editor.setWrapVisualFlags(value)
 
         elif key == 'wrap.visual.flags.location':
-            value = integer(value)
+            value = integer(value, 4)
 
             if value is not None:
-                if value in range(4):
-                    editor.setWrapVisualFlagsLocation(value)
-                else:
-                    invalid_keys.append(key)
+                editor.setWrapVisualFlagsLocation(value)
 
         elif key == 'wrap.visual.startindent':
             value = integer(value)
