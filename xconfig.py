@@ -163,6 +163,15 @@ def reload(args=None):
 
     for key, value in settings.items():
 
+        if key == 'autocomplete.visible.item.count':
+            value = integer(value)
+
+            if value is not None:
+                if value > 0:
+                    editor.autoCSetMaxHeight(value)
+                else:
+                    invalid_keys.append(key)
+
         if key == 'backspace.unindents':
             value = integer(value, bool)
 

@@ -25,6 +25,9 @@ else:
     import tkinter
     import tkinter.ttk
 
+# Normal operation should be quiet.
+verbose = 0
+
 
 class XConfigUI():
     def __init__(self):
@@ -91,6 +94,7 @@ class XConfigUI():
                 return False
 
             elif key in ('asp.default.language',
+                         'autocomplete.visible.item.count',
                          'backspace.unindents',
                          'bookmark.marker',
                          'caret.width',
@@ -114,6 +118,9 @@ class XConfigUI():
                 return False
 
             # Allow any character for unspecified properties.
+            if verbose:
+                print(key, 'allows any character')
+
             return True
 
         register_entry = (self.tk.register(validate_entry), '%P')
@@ -291,7 +298,9 @@ class XConfigUI():
             return value
 
         # Set as defined.
-        if key == 'backspace.unindents':
+        if key == 'autocomplete.visible.item.count':
+            value = str(editor.autoCGetMaxHeight())
+        elif key == 'backspace.unindents':
             value = editor.getBackSpaceUnIndents()
             value = '1' if value else '0'
         elif key == 'bookmark.colour':
@@ -304,6 +313,8 @@ class XConfigUI():
         elif key == 'change.history':
             value = str(editor.getChangeHistory())
         elif key.startswith('change.history.colour.'):
+            value = ''
+        elif key == 'change.history.indicator':
             value = ''
         elif key == 'change.history.marker.modified':
             marker = xconfig.SC_MARKNUM_HISTORY_MODIFIED
@@ -339,6 +350,10 @@ class XConfigUI():
         elif key == 'wrap.visual.startindent':
             value = str(editor.getWrapStartIndent())
         else:
+            if verbose:
+                if self.file_settings[key]['section'] != 'lexer':
+                    print(key, 'is not a lexer setting')
+
             value = str(editor.getProperty(key))
 
         if value:
