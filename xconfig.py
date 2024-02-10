@@ -275,6 +275,18 @@ def reload(args=None):
                 if mark:
                     editor.markerDefine(mark, value)
 
+        elif key == 'edge.column':
+            value = integer(value)
+
+            if value is not None:
+                editor.setEdgeColumn(value)
+
+        elif key == 'edge.mode':
+            value = integer(value, 4)
+
+            if value is not None:
+                editor.setEdgeMode(value)
+
         elif key == 'fold.flags':
             value = integer(value)
 

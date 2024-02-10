@@ -80,7 +80,7 @@ class XConfigUI():
                 return True
 
             # Restrict to integers unless defined other.
-            if key.startswith(('caret.', 'change.history',
+            if key.startswith(('caret.', 'change.history', 'edge.',
                                'fold.', 'lexer.', 'wrap.')):
 
                 # Allow any character for these properties.
@@ -336,6 +336,10 @@ class XConfigUI():
         elif key == 'change.history.marker.saved':
             marker = xconfig.SC_MARKNUM_HISTORY_SAVED
             value = str(editor.markerSymbolDefined(marker))
+        elif key == 'edge.column':
+            value = str(editor.getEdgeColumn())
+        elif key == 'edge.mode':
+            value = str(editor.getEdgeMode())
         elif key == 'fold.flags':
             value = ''
         elif key == 'horizontal.scroll.width':
