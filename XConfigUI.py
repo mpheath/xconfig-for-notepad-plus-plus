@@ -81,7 +81,7 @@ class XConfigUI():
 
             # Restrict to integers unless defined other.
             if key.startswith(('caret.', 'change.history', 'edge.',
-                               'fold.', 'lexer.', 'wrap.')):
+                               'fold.', 'lexer.', 'selection.', 'wrap.')):
 
                 # Allow any character for these properties.
                 if key in ('lexer.as.comment.character',
@@ -349,6 +349,17 @@ class XConfigUI():
             value = '1' if value else '0'
         elif key == 'idle.styling':
             value = str(editor.getIdleStyling())
+        elif key == 'selection.additional.typing':
+            value = editor.getAdditionalSelectionTyping()
+            value = '1' if value else '0'
+        elif key == 'selection.multipaste':
+            value = str(editor.getMultiPaste())
+        elif key == 'selection.multiple':
+            value = editor.getMultipleSelection()
+            value = '1' if value else '0'
+        elif key == 'selection.rectangular.switch.mouse':
+            value = editor.getMouseSelectionRectangularSwitch()
+            value = '1' if value else '0'
         elif key == 'tab.draw.mode':
             value = str(editor.getTabDrawMode())
         elif key == 'technology':

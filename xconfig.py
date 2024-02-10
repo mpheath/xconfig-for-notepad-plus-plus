@@ -326,6 +326,30 @@ def reload(args=None):
             if value is not None:
                 editor.setIdleStyling(value)
 
+        elif key == 'selection.additional.typing':
+            value = integer(value, bool)
+
+            if value is not None:
+                editor.setAdditionalSelectionTyping(value)
+
+        elif key == 'selection.multipaste':
+            value = integer(value, 2)
+
+            if value is not None:
+                editor.setMultiPaste(value)
+
+        elif key == 'selection.multiple':
+            value = integer(value, bool)
+
+            if value is not None:
+                editor.setMultipleSelection(value)
+
+        elif key == 'selection.rectangular.switch.mouse':
+            value = integer(value, bool)
+
+            if value is not None:
+                editor.setMouseSelectionRectangularSwitch(value)
+
         elif key == 'tab.draw.mode':
             value = integer(value, 2)
 
