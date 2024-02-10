@@ -80,7 +80,8 @@ class XConfigUI():
                 return True
 
             # Restrict to integers unless defined other.
-            if key.startswith(('change.history', 'fold.', 'lexer.', 'wrap.')):
+            if key.startswith(('caret.', 'change.history',
+                               'fold.', 'lexer.', 'wrap.')):
 
                 # Allow any character for these properties.
                 if key in ('lexer.as.comment.character',
@@ -97,7 +98,6 @@ class XConfigUI():
                          'autocomplete.visible.item.count',
                          'backspace.unindents',
                          'bookmark.marker',
-                         'caret.width',
                          'fold',
                          'horizontal.scroll.width',
                          'horizontal.scroll.width.tracking',
@@ -310,6 +310,12 @@ class XConfigUI():
         elif key == 'bookmark.marker':
             marker = xconfig.MARK_BOOKMARK
             value = str(editor.markerSymbolDefined(marker))
+        elif key == 'caret.additional.blinks':
+            value = editor.getAdditionalCaretsBlink()
+            value = '1' if value else '0'
+        elif key == 'caret.line.visible.always':
+            value = editor.getCaretLineVisibleAlways()
+            value = '1' if value else '0'
         elif key == 'caret.width':
             value = str(editor.getCaretWidth())
         elif key == 'change.history':

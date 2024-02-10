@@ -190,6 +190,18 @@ def reload(args=None):
             if value is not None:
                 editor.markerDefine(MARK_BOOKMARK, value)
 
+        elif key == 'caret.additional.blinks':
+            value = integer(value, bool)
+
+            if value is not None:
+                editor.setAdditionalCaretsBlink(value)
+
+        elif key == 'caret.line.visible.always':
+            value = integer(value, bool)
+
+            if value is not None:
+                editor.setCaretLineVisibleAlways(value)
+
         elif key == 'caret.width':
             value = integer(value)
 
