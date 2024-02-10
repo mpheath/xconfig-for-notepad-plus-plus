@@ -296,6 +296,18 @@ def reload(args=None):
             if value is not None:
                 editor.setScrollWidthTracking(value)
 
+        elif key == 'idle.styling':
+            value = integer(value, 4)
+
+            if value is not None:
+                editor.setIdleStyling(value)
+
+        elif key == 'tab.draw.mode':
+            value = integer(value, 2)
+
+            if value is not None:
+                editor.setTabDrawMode(value)
+
         elif key == 'tab.indents':
             value = integer(value, bool)
 

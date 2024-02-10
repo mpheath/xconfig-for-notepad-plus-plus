@@ -101,12 +101,14 @@ class XConfigUI():
                          'fold',
                          'horizontal.scroll.width',
                          'horizontal.scroll.width.tracking',
+                         'idle.styling',
                          'html.tags.case.sensitive',
                          'nsis.ignorecase',
                          'nsis.uservars',
                          'ps.level',
                          'sql.backslash.escapes',
                          'styling.within.preprocessor',
+                         'tab.draw.mode',
                          'tab.timmy.whinge.level',
                          'technology',
                          'whitespace.size'):
@@ -335,6 +337,10 @@ class XConfigUI():
         elif key == 'horizontal.scroll.width.tracking':
             value = editor.getScrollWidthTracking()
             value = '1' if value else '0'
+        elif key == 'idle.styling':
+            value = str(editor.getIdleStyling())
+        elif key == 'tab.draw.mode':
+            value = str(editor.getTabDrawMode())
         elif key == 'technology':
             value = str(editor.getTechnology())
         elif key == 'whitespace.size':
