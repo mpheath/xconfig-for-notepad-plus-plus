@@ -90,7 +90,7 @@ if exist "XConfigUI.py" (
 findstr /c:"import xconfig" "%PythonScriptDir%\scripts\startup.py" 2>nul >nul
 
 if errorlevel 1 (
-    findstr /c:"import xconfig" "%ConfigDir%\scripts\startup.py" 2>nul >nul
+    findstr /c:"import xconfig" "%ConfigDir%\PythonScript\scripts\startup.py" 2>nul >nul
 )
 
 if errorlevel 1 (
