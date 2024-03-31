@@ -56,10 +56,10 @@ for an installed Notepad++ configuration so that *startup.py* can be updated.
 For portable Notepad++ in root directory:
 
  1. Copy *xconfig.properties* to `plugins\Config\xconfig.properties` .
- 2. Make dir `plugins\Config\lib` if not exist
+ 2. Make dir `plugins\Config\PythonScript\lib` if not exist
     and copy *xconfig.py*
-    to `plugins\Config\lib\xconfig.py` .
- 3. Open `plugins\PythonScript\scripts\startup.py`
+    to `plugins\Config\PythonScript\lib\xconfig.py` .
+ 3. Create file `plugins\Config\PythonScript\scripts\startup.py` if not exist
     and append this code to the end:
 
     ```py
@@ -86,11 +86,11 @@ For portable Notepad++ in root directory:
 For installed Notepad++, paths are different:
 
  1. Copy *xconfig.properties* to `%AppData%\Notepad++\plugins\Config\xconfig.properties` .
- 2. Make dir `%AppData%\Notepad++\plugins\Config\lib` if not exist
+ 2. Make dir `%AppData%\Notepad++\plugins\Config\PythonScript\lib` if not exist
     and copy *xconfig.py*
-    to `%AppData%\Notepad++\plugins\Config\lib\xconfig.py` .
- 3. Open `%ProgramFiles%\Notepad++\plugins\PythonScript\scripts\startup.py`
-    and append this code to the end:
+    to `%AppData%\Notepad++\plugins\Config\PythonScript\lib\xconfig.py` .
+ 3. Create file `%AppData%\Notepad++\plugins\PythonScript\scripts\startup.py`
+    if not exist and append this code to the end:
 
     Append code above!
 

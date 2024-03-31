@@ -87,10 +87,14 @@ if exist "XConfigUI.py" (
 )
 
 :: Check if startup.py needs to be updated.
-findstr /c:"import xconfig" "%PythonScriptDir%\scripts\startup.py" >nul
+findstr /c:"import xconfig" "%PythonScriptDir%\scripts\startup.py" 2>nul >nul
 
 if errorlevel 1 (
-    echo Update "startup.py" to import xconfig.py
+    findstr /c:"import xconfig" "%ConfigDir%\scripts\startup.py" 2>nul >nul
+)
+
+if errorlevel 1 (
+    echo Update users "startup.py" to import xconfig.py
 
     (
         echo:
@@ -106,7 +110,7 @@ if errorlevel 1 (
         echo     notepad.callback(xconfig.reload, [NOTIFICATION.BUFFERACTIVATED,
         echo                                       NOTIFICATION.LANGCHANGED,
         echo                                       NOTIFICATION.WORDSTYLESUPDATED]^)
-    ) >> "%PythonScriptDir%\scripts\startup.py"
+    ) >> "%ConfigDir%\PythonScript\scripts\startup.py"
 )
 
 :: Set PythonScript to run at Notepad++ startup.
@@ -116,6 +120,12 @@ if not exist "%ConfigDir%\PythonScriptStartup.cnf" (
     (
         echo SETTING/STARTUP/ATSTARTUP
     ) > "%ConfigDir%\PythonScriptStartup.cnf"
+) else (
+    findstr /c:"SETTING/STARTUP/ATSTARTUP" "%ConfigDir%\PythonScriptStartup.cnf" 2>nul >nul
+
+    if errorlevel 1 (
+        echo User needs to configure PythonScript to run ATSTARTUP
+    )
 )
 
 echo done
