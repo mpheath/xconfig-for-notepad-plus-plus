@@ -10,19 +10,11 @@
 #     import xconfig
 # except ImportError:
 #     pass
-# else:
-#     # Set settings for current buffer.
-#     xconfig.reload()
-#
-#     # Set settings on change of buffer...
-#     notepad.callback(xconfig.reload, [NOTIFICATION.BUFFERACTIVATED,
-#                                       NOTIFICATION.LANGCHANGED,
-#                                       NOTIFICATION.WORDSTYLESUPDATED])
 # ```
 #
 # Change PythonScript Initialisation from LAZY to ATSTARTUP.
 
-from Npp import console, editor, notepad
+from Npp import console, editor, notepad, NOTIFICATION
 import os
 import sys
 
@@ -444,3 +436,11 @@ config_file = os.path.join(notepad.getPluginConfigDir(), 'xconfig.properties')
 # Get the settings.
 settings = {}
 read()
+
+# Set settings for current buffer.
+reload()
+
+# Set settings on change of buffer...
+notepad.callback(reload, [NOTIFICATION.BUFFERACTIVATED,
+                          NOTIFICATION.LANGCHANGED,
+                          NOTIFICATION.WORDSTYLESUPDATED])

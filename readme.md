@@ -67,14 +67,6 @@ For portable Notepad++ in root directory:
         import xconfig
     except ImportError:
         pass
-    else:
-        # Set settings for current buffer.
-        xconfig.reload()
-
-        # Set settings on change of buffer.
-        notepad.callback(xconfig.reload, [NOTIFICATION.BUFFERACTIVATED,
-                                          NOTIFICATION.LANGCHANGED,
-                                          NOTIFICATION.WORDSTYLESUPDATED])
     ```
 
  4. Optionally, copy `XConfigUI.py` to
@@ -111,13 +103,13 @@ Notepad++ startup. Most properties only support integer values.
 So if you want the `change.history` property to startup as Indicators
 and Markers, then change:
 
-```
+```ini
 change.history=
 ```
 
 to
 
-```
+```ini
 change.history=7
 ```
 

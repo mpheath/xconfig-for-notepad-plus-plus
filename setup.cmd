@@ -2,7 +2,6 @@
 setlocal
 
 :: About: Setup xconfig.
-:: Install configuration may require admin.
 
 :: Working directory is script directory.
 cd /d "%~dp0"
@@ -87,14 +86,16 @@ if exist "XConfigUI.py" (
 )
 
 :: Check if startup.py needs to be updated.
-findstr /c:"import xconfig" "%PythonScriptDir%\scripts\startup.py" 2>nul >nul
+set "string=import xconfig"
+
+findstr /c:"%string%" "%PythonScriptDir%\scripts\startup.py" 2>nul >nul
 
 if errorlevel 1 (
-    findstr /c:"import xconfig" "%ConfigDir%\PythonScript\scripts\startup.py" 2>nul >nul
+    findstr /c:"%string%" "%ConfigDir%\PythonScript\scripts\startup.py" 2>nul >nul
 )
 
 if errorlevel 1 (
-    echo Update users "startup.py" to import xconfig.py
+    echo Update users startup.py to import xconfig.py
 
     (
         echo:
@@ -102,15 +103,22 @@ if errorlevel 1 (
         echo     import xconfig
         echo except ImportError:
         echo     pass
-        echo else:
-        echo     # Set settings for current buffer.
-        echo     xconfig.reload(^)
-        echo:
-        echo     # Set settings on change of buffer...
-        echo     notepad.callback(xconfig.reload, [NOTIFICATION.BUFFERACTIVATED,
-        echo                                       NOTIFICATION.LANGCHANGED,
-        echo                                       NOTIFICATION.WORDSTYLESUPDATED]^)
     ) >> "%ConfigDir%\PythonScript\scripts\startup.py"
+)
+
+:: Check if startup.py sets the callback.
+set "string=notepad.callback(xconfig.reload,"
+
+findstr /c:"%string%" "%PythonScriptDir%\scripts\startup.py" 2>nul >nul
+
+if not errorlevel 1 (
+    echo User needs to remove callback in startup.py as xconfig.py has the callback
+)
+
+findstr /c:"%string%" "%ConfigDir%\PythonScript\scripts\startup.py" 2>nul >nul
+
+if not errorlevel 1 (
+    echo User needs to remove callback in users startup.py as xconfig has the callback
 )
 
 :: Set PythonScript to run at Notepad++ startup.
