@@ -111,6 +111,7 @@ class XConfigUI():
                          'tab.draw.mode',
                          'tab.timmy.whinge.level',
                          'technology',
+                         'virtual.space',
                          'whitespace.size'):
 
                 # Allow integers.
@@ -364,6 +365,8 @@ class XConfigUI():
             value = str(editor.getTabDrawMode())
         elif key == 'technology':
             value = str(editor.getTechnology())
+        elif key == 'virtual.space':
+            value = str(editor.getVirtualSpaceOptions())
         elif key == 'whitespace.size':
             value = str(editor.getWhitespaceSize())
         elif key == 'wrap.indent.mode':

@@ -360,6 +360,12 @@ def reload(args=None):
             if value is not None:
                 editor.setTechnology(value)
 
+        elif key == 'virtual.space':
+            value = integer(value)
+
+            if value is not None:
+                editor.setVirtualSpaceOptions(value)
+
         elif key == 'whitespace.size':
             value = integer(value)
 
