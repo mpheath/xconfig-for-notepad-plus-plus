@@ -16,7 +16,6 @@
 
 from Npp import console, editor, notepad, NOTIFICATION
 import os
-import sys
 
 MARK_BOOKMARK = 20
 SC_MARKNUM_HISTORY_REVERTED_TO_ORIGIN = 21
@@ -36,8 +35,9 @@ INDICATOR_HISTORY_REVERTED_TO_MODIFIED_DELETION = 43
 verbose = 0
 
 
-if sys.version_info.major < 3:
-    # Support for Python 2 editor.getChangeHistory and editor.setChangeHistory.
+if notepad.getPluginVersion().startswith('2.0'):
+    # Support for PythonScript v2.0.
+    # Add editor.getChangeHistory and editor.setChangeHistory.
 
     import ctypes
     import ctypes.wintypes
@@ -164,7 +164,7 @@ def reload(args=None):
                 else:
                     invalid_keys.append(key)
 
-        if key == 'backspace.unindents':
+        elif key == 'backspace.unindents':
             value = integer(value, bool)
 
             if value is not None:
@@ -355,7 +355,7 @@ def reload(args=None):
                 editor.setTabIndents(value)
 
         elif key == 'technology':
-            value = integer(value, 4)
+            value = integer(value, 5)
 
             if value is not None:
                 editor.setTechnology(value)
