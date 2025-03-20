@@ -13,18 +13,18 @@ Compatible with PythonScript 2 and 3.
 
 Minimal use of xconfig is *xconfig.py* and *xconfig.properties*.
 The latter file contains the permanent settings.
-These settings are applied at startup by *xconfig.py*.
+These settings are applied at startup by *xconfig.py* .
 
 An extra option is *XConfigUI.py* which requires the additional *tkinter* package.
 This script only handles the runtime settings in memory.
 These settings are applied during the running instance of Notepad++.
 
-More details about the optional UI can be viewed on the [ui page](ui/readme.md) .
+More details about the optional UI can be viewed on the [ui page] .
 
 Another extra option is *ToggleChangeHistory.py* which might help with
 a requested feature to toggle Change History markers. The function is
 in *xconfig.py* to keep the Global namespace clean so minimal code is
-in *ToggleChangeHistory.py*. PythonScript allows a script to be an
+in *ToggleChangeHistory.py* . PythonScript allows a script to be an
 icon in the toolbar, so can make it easy to toggle from there.
 
 Fold settings usually apply at opening of a buffer, so the UI may
@@ -41,8 +41,9 @@ the site link below to manually install and if using the UI, go to
 
 https://github.com/bruderstein/PythonScript/releases
 
-and download a file like *PythonScript_TclTk_2.0.0.0_x64.zip* to get
-the tkinter library. Note the TclTk which is short for Tcl tkinter.
+and download a file like *PythonScript_TclTk_2.1.0.0_x64.zip* to get
+the tkinter library for PythonScript [v2.1] or the older [v2.0] .
+Note the TclTk which is short for Tcl tkinter.
 
 PythonScript 3 should work well too if prefered though may not be in
 Plugin Admin yet so download and manually install.
@@ -124,3 +125,8 @@ May need to change tabs or similar event to update the buffer or use
 `notepad.activateBufferID(notepad.getCurrentBufferID())`
 which is getting a bit long to handle outside of a script.
 That is why the UI was created to make runtime changes easier.
+
+
+ [ui page]: ui/readme.md
+ [v2.0]: https://github.com/bruderstein/PythonScript/releases/tag/v2.0.0
+ [v2.1]: https://github.com/bruderstein/PythonScript/releases/tag/v2.1.0
