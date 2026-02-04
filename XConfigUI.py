@@ -343,6 +343,8 @@ class XConfigUI():
             value = str(editor.getEdgeMode())
         elif key == 'fold.flags':
             value = ''
+        elif key == 'font.quality':
+            value = str(editor.getFontQuality())
         elif key == 'horizontal.scroll.width':
             value = str(editor.getScrollWidth())
         elif key == 'horizontal.scroll.width.tracking':

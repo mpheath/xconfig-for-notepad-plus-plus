@@ -300,6 +300,12 @@ def reload(args=None):
                 else:
                     editor.setFoldFlags(value)
 
+        elif key == 'font.quality':
+            value = integer(value, 4)
+
+            if value is not None:
+                editor.setFontQuality(value)
+
         elif key == 'horizontal.scroll.width':
             value = integer(value)
 
